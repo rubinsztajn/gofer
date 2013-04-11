@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+  <modsCollection>
+    {% for record in records %}
+      <mods>
+       <titleInfo>
+	 <title>{{ record.title }}</title>
+       </titleInfo>
+       <abstract>{{ record.abstract }}</abstract>
+       <identifier>{{ record.id }}</identifier>
+     </mods>
+    {% endfor %}
+  </modsCollection>
