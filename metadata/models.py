@@ -63,6 +63,9 @@ class Tags(models.Model):
     def __unicode__(self):
         return self.name
 
+    class Meta:
+        verbose_name = "tag"
+
 class Record(models.Model):
     STATUS = (
         ('d', 'Draft'),
