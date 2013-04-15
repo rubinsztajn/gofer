@@ -135,6 +135,7 @@ INSTALLED_APPS = (
     'grappelli',
     'django.contrib.admin',
     'imagekit',
+    'storages',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -172,3 +173,8 @@ HAYSTACK_SEARCH_ENGINE = 'solr'
 HAYSTACK_SOLR_URL = 'http://127.0.0.1:8983/solr'
 
 GRAPPELLI_ADMIN_TITLE = "Gofer"
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_ACCESS_KEY_ID = 'AKIAJUSD764EYHBEFALQ'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'gofer'

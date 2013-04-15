@@ -1,5 +1,22 @@
 {% extends "gofer/base.html" %}
 
 {% block content %}
-<p>This is the home page</p>
+
+{% if ready_for_export %}
+  <div class="alert alert-info">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    There are <strong>{{ ready_for_export|length }}</strong> records ready to be exported. <strong><a href="/admin/metadata/record/?record_status__exact=r">View</a></strong>.
+  </div>
+{% endif %}
+
+
+<div class="hero-unit">
+<h1>Welcome to Gofer!</h1>
+<p>Gofer, Gather Objects For Eventual Reuse, is a metadata collaboration and management tool.</p>
+
+  <form class="form-search" method="GET" action="/search/">
+    <input type="text" name="q" class="input-xlarge search-query">
+    <button type="submit" class="btn">Search</button>
+  </form>
+</div>
 {% endblock %}

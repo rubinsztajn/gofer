@@ -1,6 +1,7 @@
 from django.db import models
-from imagekit.models import ImageSpecField
+from imagekit.models import ImageSpecField, ProcessedImageField
 from imagekit.processors import ResizeToFill, Adjust
+
 
 class Name(models.Model):
     TYPES = (
@@ -96,8 +97,14 @@ class Record(models.Model):
         else:
             return None
     
+    def get_image(self):
+        if self.image_set.all():
+            return self.image_set.all()[0].image.url
+        else:
+            return None
+    
 class Image(models.Model):
-    image = models.ImageField(upload_to='media')
+    image = ProcessedImageField(upload_to='media', format='JPEG', options={'quality':90})
     thumbnail = ImageSpecField([Adjust(contrast=1.2, sharpness=1.1), 
                                 ResizeToFill(50,50)], image_field='image',
                                 format='JPEG', options={'quality':90})

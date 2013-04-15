@@ -1,30 +1,37 @@
 {% extends 'gofer/base.html' %}
 
+
 {% block content %}
     <h2>Search</h2>
 
-    <form method="get" action=".">
-        <table>
-            {{ form.as_table }}
-            <tr>
-                <td>&nbsp;</td>
-                <td>
-                    <input type="submit" value="Search">
-                </td>
-            </tr>
-        </table>
-
+    <form class="form-search" method="get" action=".">
+      <input type="text" name="q" class="input-medium search-query" value="{{ query }}" />
+      <button type="submit" class="btn">Search</button>
+    </form>
+      
         {% if query %}
             <h3>Results</h3>
+	    <p>Your search returned {{ page.object_list|length }} results</p>
+	    <table class="table">
+	      <thead>
+		<tr>
+		  <th>Title</th>
+		  <th></th>
+		</tr>
+	      </thead>
+	      <tbody>
+		{% for result in page.object_list %}
+		  <tr>
+		    <td><a href="/record/{{ result.object.id }}">{{ result.object.title }}</a></td>
+		    <td>{% if result.object.get_thumb %}<img src="{{ result.object.get_thumb }}" />{% endif %}</td>
+		  </tr>
 
-            {% for result in page.object_list %}
-                <p>
-                    <a href="/record/{{ result.object.id }}">{{ result.object.title }}</a>
-		    {% if result.object.get_thumb %}<img src="{{ result.object.get_thumb }}" />{% endif %}
-                </p>
-            {% empty %}
-                <p>No results found.</p>
-            {% endfor %}
+	     
+		{% empty %}
+		  <td>No results found.</td><td></td>
+		{% endfor %}
+	      </tbody>
+	     </table>
 
             {% if page.has_previous or page.has_next %}
                 <div>

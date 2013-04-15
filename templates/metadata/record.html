@@ -2,6 +2,21 @@
 
 {% block content %}
 
-<p>{{ record.title }}</p>
+{% if record.record_status == 'r' %}
+<span class="label label-info">Ready for export</span>
+{% elif record.record_status == 'e' %}
+<span class="label label-success">Exported</span>
+{% else %}
+<span class="label label-warning">Draft</span>
+{% endif %}
+
+<div id="title">
+  <h1>{{ record.title }}</h1>
+</div>
+
+<div id="metadata">
+  <img width="300px" src="{{ record.get_image }}" class="img-polaroid" />
+  <p>{{ record.abstract }}</p>
+</div>
 
 {% endblock %}

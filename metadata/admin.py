@@ -19,6 +19,7 @@ class RecordAdmin(ImportExportMixin, admin.ModelAdmin):
     raw_id_fields = ('names','relatives','tags',)
     autocomplete_lookup_fields = {'m2m':['names', 'relatives', 'tags'],}
     list_display = ('title', 'date_created')
+    list_filter = ('record_status',)
     search_fields = ('title', 'abstract', 'notes')
     inlines = [ImageInline,]
 

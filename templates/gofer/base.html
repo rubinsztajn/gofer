@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
    <head>
      <title>Gofer | Welcome</title>
@@ -5,14 +6,13 @@
      <script type="text/javascript" src="/static/js/jquery-ui-min.js"></script>
      <script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js"></script>
      <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css" />
-     <link rel="stylesheet" type="text/css" href="/static/css/squirrel.css" />
+     <link rel="stylesheet" type="text/css" href="/static/css/gofer.css" />
    </head>
    <body>
      <div class="navbar navbar-inverse">
        <div class="navbar-inner">
 	 <a href="/" class="brand">Gofer</a>
 	 <ul class="nav pull-right">
-	   <li><a href="#">Something</a></li>
 	   {% if user.is_authenticated %}
 	   <li class="dropdown">
 	     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, {{ user.username }} <b class="caret"></b></a>
@@ -24,13 +24,16 @@
 	   {% endif %}
          </ul>
        </div>
+      </div>
      
        <div class="container-fluid">
 	 <div class="row-fluid">
-	   <div class="span10">
+	   <div class="span2">
+	     {% include "gofer/sidebar.html" %}
+	   </div>
+	   <div class="span8">
 	     {% block content %}{% endblock %}
 	   </div>
 	 </div>
-       </div>
      </body>
    </html>
