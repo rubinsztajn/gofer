@@ -7,14 +7,20 @@ from metadata.models import Record, Name, Image, Related, Tags
 
 def export_selected_objects(modeladmin, request, queryset):
     selected = request.POST.getlist(admin.ACTION_CHECKBOX_NAME)
+    queryset.update(record_status='e')
     return HttpResponseRedirect("/export/?ids=%s" % (','.join(selected)))
+
+def make_ready_for_export(modeladmin, request, queryset):
+    queryset.update(record_status='r')
+
+make_ready_for_export.short_description = "Mark selected records as ready to export"
 
 class ImageInline(admin.TabularInline):
     model = Image
     extra = 1
 
 class RecordAdmin(ImportExportMixin, admin.ModelAdmin):
-    actions = [export_selected_objects]
+    actions = [make_ready_for_export, export_selected_objects]
     fields = ('record_status', 'title', 'abstract', ('date_created', 'date_issued'), 'names', 'pages', 'size', 'relatives', 'tags', 'notes')
     raw_id_fields = ('names','relatives','tags',)
     autocomplete_lookup_fields = {'m2m':['names', 'relatives', 'tags'],}
