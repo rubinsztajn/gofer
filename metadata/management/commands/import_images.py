@@ -16,6 +16,6 @@ class Command(BaseCommand):
             path = '/Users/arubinst/y/scans/TAR/Photos/' + row['abstract']
             f = File(open(path, 'r'))
             i = Image(title=row['title'], image=f, record=r)
-            i.image.save(row['title'], f)
+            i.image.save(f.name, f)
             i.save()
     
