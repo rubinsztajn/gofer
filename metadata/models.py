@@ -8,16 +8,12 @@ class Name(models.Model):
         ('p', 'Personal'),
         ('c', 'Corporate'),
     )
-    ROLES = (
-        ('cre', 'Creator'),
-        ('pht', 'Photographer'),
-    )
 
     first_name = models.CharField(max_length=200, blank=True)
     last_name = models.CharField(max_length=200)
     dates = models.CharField(max_length=20, blank=True)
     type = models.CharField(max_length=3, choices=TYPES, blank=True)
-    role = models.CharField(max_length=3, choices=ROLES, blank=True)
+
 
     @staticmethod
     def autocomplete_search_fields():
@@ -76,7 +72,7 @@ class Record(models.Model):
 
     title = models.TextField()
     abstract = models.TextField(blank=True)
-    names = models.ManyToManyField(Name, blank=True)
+    names = models.ManyToManyField(Name, through="Role", blank=True)
     date_created = models.CharField(max_length=100, blank=True)
     date_issued = models.CharField(max_length=100, blank=True)
     pages = models.CharField(max_length=10, blank=True)
@@ -103,6 +99,16 @@ class Record(models.Model):
         else:
             return None
     
+class Role(models.Model):
+    ROLES = (
+        ('cre', 'Creator'),
+        ('pht', 'Photographer'),
+    )
+
+    name = models.ForeignKey(Name)
+    record = models.ForeignKey(Record)
+    role = models.CharField(max_length=3, choices=ROLES, blank=True)
+
 class Image(models.Model):
     image = ProcessedImageField(upload_to='media', format='JPEG', options={'quality':90})
     thumbnail = ImageSpecField([Adjust(contrast=1.2, sharpness=1.1), 
@@ -112,3 +118,4 @@ class Image(models.Model):
     title = models.CharField(max_length=200)
     record = models.ForeignKey(Record, blank=True)
 
+    

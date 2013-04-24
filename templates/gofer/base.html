@@ -7,6 +7,7 @@
      <script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js"></script>
      <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css" />
      <link rel="stylesheet" type="text/css" href="/static/css/gofer.css" />
+     <link rel="shortcut icon" href="{{ STATIC_URL }}images/favicon.ico" />
    </head>
    <body>
      <div class="navbar navbar-inverse">
@@ -33,6 +34,12 @@
 	   </div>
 	   <div class="span8">
 	     {% block content %}{% endblock %}
+	   </div>
+	   <div class="push"></div>
+	 </div>
+	 <div id="footer">
+	   <div class="container">
+	     <p class="muted credit">Example courtesy <a href="http://martinbean.co.uk">Martin Bean</a> and <a href="http://ryanfait.com/sticky-footer/">Ryan Fait</a>.</p>
 	   </div>
 	 </div>
      </body>
