@@ -11,10 +11,24 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+LOGIN_REDIRECT_URL = '/'
+
+HAYSTACK_SITECONF = 'gofer.search_sites'
+HAYSTACK_SEARCH_ENGINE = 'solr'
+HAYSTACK_SOLR_URL = 'http://127.0.0.1:8983/solr'
+
+GRAPPELLI_ADMIN_TITLE = "Gofer"
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_ACCESS_KEY_ID = ''
+AWS_SECRET_ACCESS_KEY = ''
+AWS_STORAGE_BUCKET_NAME = ''
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/Users/arubinst/db/gofer.db',                      # Or path to database file if using sqlite3.
+        'NAME': 'gofer.db',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -166,15 +180,3 @@ LOGGING = {
         },
     }
 }
-LOGIN_REDIRECT_URL = '/'
-
-HAYSTACK_SITECONF = 'gofer.search_sites'
-HAYSTACK_SEARCH_ENGINE = 'solr'
-HAYSTACK_SOLR_URL = 'http://127.0.0.1:8983/solr'
-
-GRAPPELLI_ADMIN_TITLE = "Gofer"
-
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-AWS_ACCESS_KEY_ID = 'AKIAJWV6QFQSGIZ3DOWQ'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'gofer_files'
