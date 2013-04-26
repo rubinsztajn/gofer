@@ -8,14 +8,23 @@
       <input type="text" name="q" class="input-medium search-query" value="{{ query }}" />
       <button type="submit" class="btn">Search</button>
     </form>
-      
+        
         {% if query %}
             <h3>Results</h3>
-	    <p>Your search returned {{ page.object_list|length }} results</p>
+	    <p>Your search returned {{ paginator.count }} results</p>
+            {% if page.has_previous or page.has_next %}
+                <div class="btn-group">
+                    {% if page.has_previous %}<a class="btn" href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
+                     <button class="btn disabled">{{ page }}</button>
+                    {% if page.has_next %}<a class="btn" href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
+                </div>
+            {% endif %}
+
 	    <table class="table">
 	      <thead>
 		<tr>
 		  <th>Title</th>
+		  <th>Abstract</th>
 		  <th></th>
 		</tr>
 	      </thead>
@@ -23,6 +32,7 @@
 		{% for result in page.object_list %}
 		  <tr>
 		    <td><a href="/record/{{ result.object.id }}">{{ result.object.title }}</a></td>
+		    <td>{{ result.object.abstract }}</td>
 		    <td>{% if result.object.get_thumb %}<img src="{{ result.object.get_thumb }}" />{% endif %}</td>
 		  </tr>
 
@@ -33,13 +43,6 @@
 	      </tbody>
 	     </table>
 
-            {% if page.has_previous or page.has_next %}
-                <div>
-                    {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
-                    |
-                    {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
-                </div>
-            {% endif %}
         {% else %}
             {# Show some example queries to run, maybe query syntax, something else? #}
         {% endif %}

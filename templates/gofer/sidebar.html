@@ -1,8 +1,10 @@
 
 <ul class="nav nav-tabs nav-stacked">
   {% if user.is_authenticated %}
+<!--
     <li><a href="#">Here is option 1</a></li>
     <li><a href="#">Here is option 2</a></li>
+-->
     {% if record and user.is_staff %}
     <li><a href="/admin/metadata/record/{{ record.id }}/">Edit record</a></li>
     {% endif %}
