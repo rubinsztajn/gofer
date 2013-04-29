@@ -121,7 +121,7 @@
                 {% block object-tools-items %}
                     <li><a href="history/">{% trans "History" %}</a></li>
                     {% if has_absolute_url %}<li><a href="../../../r/{{ content_type_id }}/{{ object_id }}/" class="grp-state-focus" target="_blank">{% trans "View on site" %}</a></li>{% endif%}
-		    <li><a href="/record/{{ object_id }}">View</a></li>
+		    {% if opts.verbose_name == 'record' %}<li><a href="/record/{{ object_id }}">View</a></li>{% endif %}
                 {% endblock %}
             </ul>
         {% endif %}

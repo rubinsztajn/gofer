@@ -16,7 +16,7 @@
 
 <div id="metadata">
   {% if record.get_image %}
-  <img width="300px" src="{{ record.get_image }}" class="img-polaroid" />
+  <a href="{{ record.get_image }}"><img width="300px" src="{{ record.get_image }}" class="img-polaroid" alt="{{ record.title }}" /></a>
   {% endif %}
   <p>{{ record.abstract }}</p>
 </div>

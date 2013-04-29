@@ -4,6 +4,8 @@
     <h1 id="grp-admin-title">{% if grappelli_admin_title %}{{ grappelli_admin_title }}{% else %}{% get_admin_title %}{% endif %}</h1>
     {% if user.is_authenticated and user.is_staff %}
         <ul id="grp-user-tools">
+	    <!-- Link to gofer home page -->
+	    <li class="grp-user-options-container"><a href="/">Gofer Home</a></li>
             <!-- Username -->
             <li class="grp-user-options-container grp-collapse grp-closed">
                 <a href="javascript://" class="user-options-handler grp-collapse-handler">{% filter force_escape %}{% firstof user.first_name user.username user.get_short_name user.get_username %}{% endfilter %}</a>
