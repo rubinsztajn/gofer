@@ -37,6 +37,7 @@ class Related(models.Model):
         ('s', 'Series'),
         ('enc', 'Enclosure'),
         ('encd', 'Enclosed in'),
+        ('fld', 'Folder'),
     )
 
     title = models.CharField(max_length=200, blank=True)
@@ -82,6 +83,8 @@ class Record(models.Model):
     relatives = models.ManyToManyField(Related, blank=True)
     notes = models.TextField(blank=True)
     record_status = models.CharField(max_length=1, choices=STATUS, default=STATUS[0])
+    folder1 = models.CharField(max_length=100, blank=True)
+    folder2 = models.CharField(max_length=100, blank=True)
     
     def __unicode__(self):
         return self.title

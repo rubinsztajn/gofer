@@ -1,5 +1,20 @@
 {% extends 'gofer/base.html' %}
 
+{% block sidebar %}
+  <ul class="nav nav-tabs nav-stacked">
+    {% if query %}
+      <h4>Folders</h4>
+	      {% if facets.fields.folder1 %}
+		{% for folder1 in facets.fields.folder1 %}
+		  {% if folder1.1 > 0 %}
+		  <li style="font-size:0.75em;"><a href="{{ request.get_full_path }}&amp;selected_facets=folder1_exact:{{ folder1.0|urlencode }}">{{ folder1.0 }}  ({{ folder1.1 }})</a></li>
+		  {% endif %}
+		{% endfor %}
+              {% else %}
+		<p>Nothing doing</p>
+              {% endif %}
+	{% endif %}
+{% endblock %}
 
 {% block content %}
     <h2>Search</h2>
@@ -10,6 +25,8 @@
     </form>
         
         {% if query %}
+	  
+	    
             <h3>Results</h3>
 	    <p>Your search returned {{ paginator.count }} results</p>
             {% if page.has_previous or page.has_next %}

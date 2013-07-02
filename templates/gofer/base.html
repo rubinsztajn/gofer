@@ -30,7 +30,7 @@
        <div class="container-fluid">
 	 <div class="row-fluid">
 	   <div class="span2">
-	     {% include "gofer/sidebar.html" %}
+	     {% block sidebar %}{% endblock %}
 	   </div>
 	   <div class="span8">
 	     {% block content %}{% endblock %}

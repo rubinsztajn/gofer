@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404, render_to_response, redirect
 from django.contrib import auth
-from metadata.models import Record
+from metadata.models import Record, Related
 
 def home(request):
     if request.user.is_authenticated():
+        parents = Related.objects.filter(type='fld')
         ready_for_export = Record.objects.filter(record_status='r')
-        return render_to_response('gofer/home.html', {'user': request.user, 'ready_for_export': ready_for_export})
+        return render_to_response('gofer/home.html', {'user': request.user, 'ready_for_export': ready_for_export, 'parents': parents})
     else:
         return redirect('/login')
 

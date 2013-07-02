@@ -1,6 +1,26 @@
 {% extends "gofer/base.html" %}
 
+{% block sidebar %}
+<ul class="nav nav-tabs nav-stacked">
+  {% if user.is_authenticated %}
+<!--
+    <li><a href="#">Here is option 1</a></li>
+    <li><a href="#">Here is option 2</a></li>
+-->
+    {% if record and user.is_staff %}
+    <li><a href="/admin/metadata/record/{{ record.id }}/">Edit record</a></li>
+    {% endif %}
+  {% endif %}
+{% endblock %}
+
 {% block content %}
+
+{% if record.folder1 %}
+<div id="folders">
+  <i class="icon-folder-open"></i> <a href="/search/?q={{ record.folder1 }}">{{ record.folder1 }}</a>{% if record.folder2 %} --> <i class="icon-folder-open"></i> <a href="/search/?q={{ record.folder2 }}">{{ record.folder2 }}</a>{% endif %}
+</div>
+{% endif %}
+
 
 {% if record.record_status == 'r' %}
 <span class="label label-info">Ready for export</span>
@@ -9,6 +29,7 @@
 {% else %}
 <span class="label label-warning">Draft</span>
 {% endif %}
+
 
 <div id="title">
   <h1>{{ record.title }}</h1>
