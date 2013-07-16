@@ -32,7 +32,13 @@
 
 
 <div id="title">
+  <h3>
+  {% for name in record.names.all %}
+    {{ name }}
+  {% endfor %}
+  </h3>    
   <h1>{{ record.title }}</h1>
+  {% if record.date_created or record.date_issued %}<h4>{{ record.date_created }}{{ record.date_issued }}</h4>{% endif %}
 </div>
 
 <div id="metadata">
@@ -40,6 +46,14 @@
   <a href="{{ record.get_image }}"><img width="300px" src="{{ record.get_image }}" class="img-polaroid" alt="{{ record.title }}" /></a>
   {% endif %}
   <p>{{ record.abstract }}</p>
+  
+  {% if record.tags.all %}
+    <p>Tags:</p>
+    {% for tag in record.tags.all %}
+      {{ tag.name }},
+    {% endfor %}
+  {% endif %}
+  
 </div>
 
 {% endblock %}
