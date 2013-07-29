@@ -71,6 +71,12 @@ class Record(models.Model):
         ('e', 'Exported'),
     )
 
+    FORMATS = (
+        ('i', 'Image'),
+        ('v', 'Video'),
+        ('a', 'Audio'),
+    )
+
     title = models.TextField()
     abstract = models.TextField(blank=True)
     names = models.ManyToManyField(Name, through="Role", blank=True)
@@ -83,6 +89,8 @@ class Record(models.Model):
     relatives = models.ManyToManyField(Related, blank=True)
     notes = models.TextField(blank=True)
     record_status = models.CharField(max_length=1, choices=STATUS, default=STATUS[0])
+    format = models.CharField(max_length=1, choices=FORMATS, blank=True)
+    rights = models.BooleanField()
     folder1 = models.CharField(max_length=100, blank=True)
     folder2 = models.CharField(max_length=100, blank=True)
     
