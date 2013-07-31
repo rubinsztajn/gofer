@@ -32,7 +32,7 @@ class RoleInline(admin.TabularInline):
 
 class RecordAdmin(ImportExportMixin, admin.ModelAdmin):
     actions = [make_draft, make_ready_for_export, export_selected_objects]
-    fields = (('record_status', 'format', 'rights'), 'title', 'abstract', ('date_created', 'date_issued'), 'pages', 'size','relatives', 'tags', 'notes', 'folder1', 'folder2', 'orig_path')
+    fields = (('record_status', 'format', 'item_id'), 'rights', 'title', 'abstract', ('date_created', 'date_issued'), 'pages', 'size','relatives', 'tags', 'notes', 'folder1', 'folder2', 'orig_path')
     raw_id_fields = ('relatives','tags',)
     autocomplete_lookup_fields = {'m2m':['relatives', 'tags'],}
     list_display = ('title', 'abstract', 'date_created')
