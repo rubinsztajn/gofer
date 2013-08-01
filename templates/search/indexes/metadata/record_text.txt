@@ -1,3 +1,4 @@
 {{ object.title }}
 {{ object.abstract }}
-{{ object.folder }}
+{{ object.folder1 }}
+{{ object.folder2 }}

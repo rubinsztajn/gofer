@@ -30,7 +30,7 @@ def deploy():
         print(green("Pulling from master..."))
         run("git pull")
         print(green("Collecting static files..."))
-        run("source venv/bin/activate && python manage.py collectstatic")
+        run("source venv/bin/activate && python manage.py collectstatic --noinput")
         print(green("Migrating the database..."))
         run("source venv/bin/activate && python manage.py migrate metadata")
         print(green("Restarting webserver..."))
