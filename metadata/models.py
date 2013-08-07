@@ -93,7 +93,7 @@ class Record(models.Model):
     rights = models.BooleanField()
     folder1 = models.CharField(max_length=100, blank=True)
     folder2 = models.TextField(blank=True)
-    orig_path = models.CharField("Original path", max_length=100, blank=True)
+    orig_path = models.TextField("Original path", blank=True)
     item_id = models.CharField(max_length=100, blank=True)
     
     def __unicode__(self):
