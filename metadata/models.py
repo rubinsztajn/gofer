@@ -92,7 +92,7 @@ class Record(models.Model):
     format = models.CharField(max_length=1, choices=FORMATS, blank=True)
     rights = models.BooleanField()
     folder1 = models.CharField(max_length=100, blank=True)
-    folder2 = models.CharField(max_length=500, blank=True)
+    folder2 = models.TextField(blank=True)
     orig_path = models.CharField("Original path", max_length=100, blank=True)
     item_id = models.CharField(max_length=100, blank=True)
     
