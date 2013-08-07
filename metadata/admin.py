@@ -35,8 +35,8 @@ class RecordAdmin(ImportExportMixin, admin.ModelAdmin):
     fields = (('record_status', 'format', 'item_id'), 'rights', 'title', 'abstract', ('date_created', 'date_issued'), 'pages', 'size','relatives', 'tags', 'notes', 'folder1', 'folder2', 'orig_path')
     raw_id_fields = ('relatives','tags',)
     autocomplete_lookup_fields = {'m2m':['relatives', 'tags'],}
-    list_display = ('title', 'abstract', 'date_created')
-    list_filter = ('record_status',)
+    list_display = ('title', 'abstract', 'folder1', 'folder2', 'date_created')
+    list_filter = ('record_status', 'format', 'rights')
     search_fields = ('title', 'abstract', 'notes')
     inlines = [RoleInline, ImageInline,]
 
