@@ -75,6 +75,7 @@ class Record(models.Model):
         ('i', 'Image'),
         ('v', 'Video'),
         ('a', 'Audio'),
+        ('t', 'Text'),
     )
 
     title = models.TextField()
